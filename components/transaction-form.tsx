@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { CATEGORIES, type Transaction } from "@/types"
 import { useToast } from "@/hooks/use-toast"
-import { Plus, DollarSign } from "lucide-react"
+import { Plus, IndianRupee } from "lucide-react"
 
 interface TransactionFormProps {
   onTransactionAdded: (transaction: Omit<Transaction, "_id">) => void
@@ -112,7 +112,7 @@ export function TransactionForm({ onTransactionAdded }: TransactionFormProps) {
           Amount
         </Label>
         <div className="relative">
-          <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <IndianRupee className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             id="amount"
             type="number"

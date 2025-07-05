@@ -13,9 +13,9 @@ export function MonthlyExpensesChart({ transactions }: MonthlyExpensesChartProps
   const chartData = useMemo(() => {
     const monthlyData: { [key: string]: number } = {}
 
-    // Get last 6 months + current month (7 months total)
+    // Get last 6 months
     const now = new Date()
-    for (let i = 6; i >= 0; i--) {
+    for (let i = 5; i >= 0; i--) {
       const date = new Date(now.getFullYear(), now.getMonth() - i, 1)
       const monthKey = date.toISOString().slice(0, 7) // YYYY-MM format
       monthlyData[monthKey] = 0
@@ -76,7 +76,7 @@ export function MonthlyExpensesChart({ transactions }: MonthlyExpensesChartProps
               <YAxis
                 className="text-muted-foreground"
                 tick={{ fontSize: 10 }}
-                tickFormatter={(value) => `$${value}`}
+                tickFormatter={(value) => `₹${value}`}
                 width={40}
               />
               <ChartTooltip
@@ -87,7 +87,7 @@ export function MonthlyExpensesChart({ transactions }: MonthlyExpensesChartProps
                       <div className="bg-background/95 backdrop-blur-sm border rounded-lg p-2 shadow-lg">
                         <p className="font-medium text-xs">{data.fullMonth}</p>
                         <p className="text-xs text-primary">
-                          ${data.amount.toFixed(2)}
+                          ₹{data.amount.toFixed(2)}
                           {data.isCurrentMonth && (
                             <span className="ml-1 text-xs bg-primary/10 text-primary px-1 py-0.5 rounded">Current</span>
                           )}

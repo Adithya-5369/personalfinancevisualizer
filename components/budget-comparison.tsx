@@ -74,7 +74,7 @@ export function BudgetComparison({ transactions, budgets }: BudgetComparisonProp
             <BarChart data={chartData} margin={{ top: 10, right: 10, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="category" tick={{ fontSize: 10 }} />
-              <YAxis tick={{ fontSize: 10 }} tickFormatter={(value) => `$${value}`} width={40} />
+              <YAxis tick={{ fontSize: 10 }} tickFormatter={(value) => `₹${value}`} width={40} />
               <ChartTooltip
                 content={({ active, payload, label }) => {
                   if (active && payload && payload.length) {
@@ -84,12 +84,12 @@ export function BudgetComparison({ transactions, budgets }: BudgetComparisonProp
                         <div className="bg-background border rounded-lg p-2 shadow-md">
                           <p className="font-medium text-xs mb-1">{label}</p>
                           <div className="space-y-1 text-xs">
-                            <p>Budget: ${data.budget.toFixed(2)}</p>
-                            <p>Actual: ${data.actual.toFixed(2)}</p>
+                            <p>Budget: ₹{data.budget.toFixed(2)}</p>
+                            <p>Actual: ₹{data.actual.toFixed(2)}</p>
                             {data.overspent > 0 ? (
-                              <p className="text-red-600">Over by: ${data.overspent.toFixed(2)}</p>
+                              <p className="text-red-600">Over by: ₹{data.overspent.toFixed(2)}</p>
                             ) : (
-                              <p className="text-green-600">Remaining: ${data.remaining.toFixed(2)}</p>
+                              <p className="text-green-600">Remaining: ₹{data.remaining.toFixed(2)}</p>
                             )}
                           </div>
                         </div>

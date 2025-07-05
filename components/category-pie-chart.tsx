@@ -94,7 +94,7 @@ export function CategoryPieChart({ transactions }: CategoryPieChartProps) {
                       <div className="bg-background/95 backdrop-blur-sm border rounded-lg p-2 shadow-lg">
                         <p className="font-medium text-xs">{data.category}</p>
                         <p className="text-xs text-primary">
-                          ${data.amount.toFixed(2)} ({data.percentage}%)
+                          ₹{data.amount.toFixed(2)} ({data.percentage}%)
                         </p>
                       </div>
                     )
@@ -106,11 +106,16 @@ export function CategoryPieChart({ transactions }: CategoryPieChartProps) {
                 verticalAlign="bottom"
                 height={40}
                 wrapperStyle={{ fontSize: "10px", paddingTop: "5px" }}
-                formatter={(value, entry) => (
-                  <span className="text-xs text-muted-foreground">
-                    {value} ({(entry.payload as typeof dataWithPercentage[number])?.percentage ?? 0}%)
-                  </span>
-                )}
+                formatter={(value) => {
+                  // Find the percentage from our data based on the category name
+                  const item = dataWithPercentage.find((d) => d.category === value)
+                  const percentage = item ? item.percentage : "0"
+                  return (
+                    <span className="text-xs text-muted-foreground">
+                      {value} ({percentage}%)
+                    </span>
+                  )
+                }}
               />
             </PieChart>
           </ResponsiveContainer>

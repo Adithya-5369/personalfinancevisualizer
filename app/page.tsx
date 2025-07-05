@@ -208,9 +208,6 @@ export default function HomePage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-primary/10 rounded-xl">
-              <Wallet className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-            </div>
             <div>
               <h1 className="text-xl sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
                 Personal Finance Visualizer
