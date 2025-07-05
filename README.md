@@ -46,6 +46,25 @@
 
 ---
 
+## 🔁 System Workflow
+
+1. **Dashboard Overview**  
+   - Real-time updates on savings, spending categories, and budget performance.
+
+2. **Budget Tracker**  
+   - Set monthly budgets and monitor category-wise utilization with alerts.
+
+3. **Expense Entry & Management**  
+   - Add and categorize expenses instantly. Built-in validators ensure consistency.
+
+4. **Spending Insights**  
+   - Smart analysis using month-to-month comparisons, overspending detection, and financial tips.
+
+5. **Charts and Trends**  
+   - Visual feedback using bar charts, pie charts, and progress rings.
+
+---
+
 ## 🗂 Project Structure
 
 ```
