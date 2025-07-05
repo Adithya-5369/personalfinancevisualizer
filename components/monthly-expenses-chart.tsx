@@ -58,34 +58,51 @@ export function MonthlyExpensesChart({ transactions }: MonthlyExpensesChartProps
   }
 
   return (
-    <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-          <XAxis dataKey="month" className="text-muted-foreground" tick={{ fontSize: 12 }} />
-          <YAxis className="text-muted-foreground" tick={{ fontSize: 12 }} tickFormatter={(value) => `$${value}`} />
-          <ChartTooltip
-            content={({ active, payload, label }) => {
-              if (active && payload && payload.length) {
-                const data = payload[0].payload
-                return (
-                  <div className="bg-background/95 backdrop-blur-sm border rounded-lg p-3 shadow-lg">
-                    <p className="font-medium">{data.fullMonth}</p>
-                    <p className="text-sm text-primary">
-                      ${data.amount.toFixed(2)}
-                      {data.isCurrentMonth && (
-                        <span className="ml-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Current</span>
-                      )}
-                    </p>
-                  </div>
-                )
-              }
-              return null
-            }}
-          />
-          <Bar dataKey="amount" fill="var(--color-amount)" radius={[4, 4, 0, 0]} className="drop-shadow-sm" />
-        </BarChart>
-      </ResponsiveContainer>
-    </ChartContainer>
+    <div className="w-full overflow-x-auto">
+      <div className="min-w-[400px] h-[200px] sm:h-[250px] md:h-[300px]">
+        <ChartContainer config={chartConfig} className="w-full h-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={chartData}
+              margin={{
+                top: 10,
+                right: 15,
+                left: 15,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+              <XAxis dataKey="month" className="text-muted-foreground" tick={{ fontSize: 10 }} interval={0} />
+              <YAxis
+                className="text-muted-foreground"
+                tick={{ fontSize: 10 }}
+                tickFormatter={(value) => `$${value}`}
+                width={40}
+              />
+              <ChartTooltip
+                content={({ active, payload, label }) => {
+                  if (active && payload && payload.length) {
+                    const data = payload[0].payload
+                    return (
+                      <div className="bg-background/95 backdrop-blur-sm border rounded-lg p-2 shadow-lg">
+                        <p className="font-medium text-xs">{data.fullMonth}</p>
+                        <p className="text-xs text-primary">
+                          ${data.amount.toFixed(2)}
+                          {data.isCurrentMonth && (
+                            <span className="ml-1 text-xs bg-primary/10 text-primary px-1 py-0.5 rounded">Current</span>
+                          )}
+                        </p>
+                      </div>
+                    )
+                  }
+                  return null
+                }}
+              />
+              <Bar dataKey="amount" fill="var(--color-amount)" radius={[2, 2, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </ChartContainer>
+      </div>
+    </div>
   )
 }

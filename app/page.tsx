@@ -204,26 +204,31 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      <div className="container mx-auto p-6 space-y-8">
+      <div className="container mx-auto p-3 sm:p-6 space-y-6 sm:space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-primary/10 rounded-xl">
-              <Wallet className="h-8 w-8 text-primary" />
+              <Wallet className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
+              <h1 className="text-xl sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
                 Personal Finance Visualizer
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Welcome back, <span className="font-medium text-foreground">{userName}</span>! Track your financial
                 journey
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <Button variant="outline" size="sm" onClick={handleLogout} className="border-0 bg-muted/50 hover:bg-muted">
-              <LogOut className="h-4 w-4 mr-2" />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleLogout}
+              className="border-0 bg-muted/50 hover:bg-muted text-xs sm:text-sm"
+            >
+              <LogOut className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
               Switch User
             </Button>
             <ThemeToggle />
@@ -234,90 +239,94 @@ export default function HomePage() {
         <DashboardSummary transactions={transactions} budgets={budgets} />
 
         {/* Main Content */}
-        <Tabs defaultValue="dashboard" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 h-12 p-1 bg-muted/50 backdrop-blur-sm">
+        <Tabs defaultValue="dashboard" className="space-y-4 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-4 h-10 sm:h-12 p-1 bg-muted/50 backdrop-blur-sm">
             <TabsTrigger
               value="dashboard"
-              className="flex items-center gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm"
+              className="flex items-center gap-1 sm:gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm text-xs sm:text-sm"
             >
-              <TrendingUp className="h-4 w-4" />
+              <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">Dashboard</span>
             </TabsTrigger>
             <TabsTrigger
               value="transactions"
-              className="flex items-center gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm"
+              className="flex items-center gap-1 sm:gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm text-xs sm:text-sm"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">Transactions</span>
             </TabsTrigger>
             <TabsTrigger
               value="budgets"
-              className="flex items-center gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm"
+              className="flex items-center gap-1 sm:gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm text-xs sm:text-sm"
             >
-              <Target className="h-4 w-4" />
+              <Target className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">Budgets</span>
             </TabsTrigger>
             <TabsTrigger
               value="insights"
-              className="flex items-center gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm"
+              className="flex items-center gap-1 sm:gap-2 data-[state=active]:bg-background data-[state=active]:shadow-sm text-xs sm:text-sm"
             >
-              <Lightbulb className="h-4 w-4" />
+              <Lightbulb className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">Insights</span>
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="dashboard" className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2">
+          <TabsContent value="dashboard" className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
               <Card className="border-0 shadow-lg bg-card/50 backdrop-blur-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2">
-                    <TrendingUp className="h-5 w-5 text-primary" />
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-lg">
+                    <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     Monthly Expenses Trend
                   </CardTitle>
-                  <CardDescription>Your spending over the last 6 months including current month</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">
+                    Your spending over the last 6 months including current month
+                  </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-3 sm:p-6">
                   <MonthlyExpensesChart transactions={transactions} />
                 </CardContent>
               </Card>
 
               <Card className="border-0 shadow-lg bg-card/50 backdrop-blur-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2">
-                    <Target className="h-5 w-5 text-primary" />
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-lg">
+                    <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     Category Breakdown
                   </CardTitle>
-                  <CardDescription>Current month spending by category</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">Current month spending by category</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-3 sm:p-6">
                   <CategoryPieChart transactions={transactions} />
                 </CardContent>
               </Card>
             </div>
 
             <Card className="border-0 shadow-lg bg-card/50 backdrop-blur-sm">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="h-5 w-5 text-primary" />
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="flex items-center gap-2 text-sm sm:text-lg">
+                  <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                   Budget Performance
                 </CardTitle>
-                <CardDescription>How your spending compares to your budgets this month</CardDescription>
+                <CardDescription className="text-xs sm:text-sm">
+                  How your spending compares to your budgets this month
+                </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-3 sm:p-6">
                 <BudgetComparison transactions={transactions} budgets={budgets} />
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="transactions" className="space-y-6">
-            <div className="grid gap-6 lg:grid-cols-3">
+          <TabsContent value="transactions" className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
               <Card className="border-0 shadow-lg bg-card/50 backdrop-blur-sm lg:col-span-1">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2">
-                    <Plus className="h-5 w-5 text-primary" />
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-lg">
+                    <Plus className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     Add Transaction
                   </CardTitle>
-                  <CardDescription>Record a new income or expense</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">Record a new income or expense</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <TransactionForm onTransactionAdded={handleTransactionAdded} />
@@ -325,9 +334,9 @@ export default function HomePage() {
               </Card>
 
               <Card className="border-0 shadow-lg bg-card/50 backdrop-blur-sm lg:col-span-2">
-                <CardHeader className="pb-4">
-                  <CardTitle>Transaction History</CardTitle>
-                  <CardDescription>Your recent financial activities</CardDescription>
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="text-sm sm:text-lg">Transaction History</CardTitle>
+                  <CardDescription className="text-xs sm:text-sm">Your recent financial activities</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <TransactionList
@@ -340,15 +349,17 @@ export default function HomePage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="budgets" className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2">
+          <TabsContent value="budgets" className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
               <Card className="border-0 shadow-lg bg-card/50 backdrop-blur-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2">
-                    <Target className="h-5 w-5 text-primary" />
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-lg">
+                    <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     Manage Budgets
                   </CardTitle>
-                  <CardDescription>Set and edit spending limits for each category</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">
+                    Set and edit spending limits for each category
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <BudgetForm
@@ -360,9 +371,9 @@ export default function HomePage() {
               </Card>
 
               <Card className="border-0 shadow-lg bg-card/50 backdrop-blur-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle>Budget Overview</CardTitle>
-                  <CardDescription>Current month budget performance</CardDescription>
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="text-sm sm:text-lg">Budget Overview</CardTitle>
+                  <CardDescription className="text-xs sm:text-sm">Current month budget performance</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <BudgetComparison transactions={transactions} budgets={budgets} />
@@ -371,7 +382,7 @@ export default function HomePage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="insights" className="space-y-6">
+          <TabsContent value="insights" className="space-y-4 sm:space-y-6">
             <SpendingInsights transactions={transactions} budgets={budgets} />
           </TabsContent>
         </Tabs>

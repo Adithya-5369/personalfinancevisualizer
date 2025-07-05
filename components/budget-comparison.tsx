@@ -58,46 +58,53 @@ export function BudgetComparison({ transactions, budgets }: BudgetComparisonProp
   if (chartData.length === 0) {
     return (
       <div className="flex items-center justify-center h-[200px] text-muted-foreground">
-        No budget data available. Set up your budgets to see comparisons.
+        <div className="text-center">
+          <p className="text-sm">No budget data available</p>
+          <p className="text-xs mt-1">Set up your budgets to see comparisons</p>
+        </div>
       </div>
     )
   }
 
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="category" />
-          <YAxis />
-          <ChartTooltip
-            content={({ active, payload, label }) => {
-              if (active && payload && payload.length) {
-                const data = chartData.find((item) => item.category === label)
-                if (data) {
-                  return (
-                    <div className="bg-background border rounded-lg p-3 shadow-md">
-                      <p className="font-medium mb-2">{label}</p>
-                      <div className="space-y-1 text-sm">
-                        <p>Budget: ${data.budget.toFixed(2)}</p>
-                        <p>Actual: ${data.actual.toFixed(2)}</p>
-                        {data.overspent > 0 ? (
-                          <p className="text-red-600">Over by: ${data.overspent.toFixed(2)}</p>
-                        ) : (
-                          <p className="text-green-600">Remaining: ${data.remaining.toFixed(2)}</p>
-                        )}
-                      </div>
-                    </div>
-                  )
-                }
-              }
-              return null
-            }}
-          />
-          <Bar dataKey="budget" fill="var(--color-budget)" radius={4} />
-          <Bar dataKey="actual" fill="var(--color-actual)" radius={4} />
-        </BarChart>
-      </ResponsiveContainer>
-    </ChartContainer>
+    <div className="w-full overflow-x-auto">
+      <div className="min-w-[300px] h-[200px] sm:h-[250px]">
+        <ChartContainer config={chartConfig} className="w-full h-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} margin={{ top: 10, right: 10, left: 10, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="category" tick={{ fontSize: 10 }} />
+              <YAxis tick={{ fontSize: 10 }} tickFormatter={(value) => `$${value}`} width={40} />
+              <ChartTooltip
+                content={({ active, payload, label }) => {
+                  if (active && payload && payload.length) {
+                    const data = chartData.find((item) => item.category === label)
+                    if (data) {
+                      return (
+                        <div className="bg-background border rounded-lg p-2 shadow-md">
+                          <p className="font-medium text-xs mb-1">{label}</p>
+                          <div className="space-y-1 text-xs">
+                            <p>Budget: ${data.budget.toFixed(2)}</p>
+                            <p>Actual: ${data.actual.toFixed(2)}</p>
+                            {data.overspent > 0 ? (
+                              <p className="text-red-600">Over by: ${data.overspent.toFixed(2)}</p>
+                            ) : (
+                              <p className="text-green-600">Remaining: ${data.remaining.toFixed(2)}</p>
+                            )}
+                          </div>
+                        </div>
+                      )
+                    }
+                  }
+                  return null
+                }}
+              />
+              <Bar dataKey="budget" fill="var(--color-budget)" radius={2} />
+              <Bar dataKey="actual" fill="var(--color-actual)" radius={2} />
+            </BarChart>
+          </ResponsiveContainer>
+        </ChartContainer>
+      </div>
+    </div>
   )
 }
