@@ -1,6 +1,6 @@
 # 💰 Personal Finance Visualizer
 
-**Live Demo**: [personalfinancevisualizer369.vercel.app](https://personalfinancevisualizer369.vercel.app/)  
+**Live Demo**: [finvisualizer.vercel.app](https://finvisualizer.vercel.app/)  
 **GitHub**: [github.com/Adithya-5369/personalfinancevisualizer](https://github.com/Adithya-5369/personalfinancevisualizer)
 
 ---
